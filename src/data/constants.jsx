@@ -103,6 +103,13 @@ const jobDescription5 = {
     ]
 }
 
+const education1 = {
+    name: '',
+    date: '',
+    subject: '',
+    description: ''
+}
+
 const jobs = [
     jobDescription1,
     jobDescription2,
@@ -112,8 +119,8 @@ const jobs = [
 
 const gridSizes = {
     aboutMe: 8,
-    workExp: 8,
+    workExp: 10,
     jobCard: 8
 }
 
-export { aboutMe, gridSizes, jobDescription1, jobDescription2, jobs }
+export { aboutMe, gridSizes, jobDescription1, jobDescription2, jobs, education1 }
