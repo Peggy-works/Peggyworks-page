@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar.jsx'
 import React, { useRef, useState } from 'react'
 
 // Constants
-import { aboutMe, jobDescription1, jobDescription2 } from '../data/constants.jsx';
+import { aboutMe, jobDescription1, jobDescription2, gridSizes, jobs } from '../data/constants.jsx';
 
 // Assets
 import profileImage from '../assets/pf_image.png'
@@ -358,7 +358,7 @@ const Home = () => {
                             }}
                         > 
                             {/* About Me Section */}
-                            <Grid container gap={2} size={{ xs: 7, lg: 8 }} 
+                            <Grid container gap={2} size={{ xs: 7, lg: gridSizes.workExp }} 
                                 sx={{ 
                                     p: 2, 
                                     justifyContent: {
@@ -368,29 +368,7 @@ const Home = () => {
                                 }}
                                 ref={(el) => (currentRef.current['about'] = el)}
                             >  
-                                <Grid size={{xs: 12, sm: 12, md: 12, lg: 11}} sx={{ textAlign: 'left' }}> 
-                                    {/*<Typography variant='h3' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', pb: 1 }}>
-                                        Hello 🌎
-                                    </Typography> 
-                                    <Typography fontSize='0.875rem' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', pb: 2 }}>
-                                        I'm a software developer from San Diego, California, passionate about building
-                                        scalable, user-friendly applications. With experience in python, JavaScript, React,
-                                        and backend development, I enjoy tackling complex problems and turning ideas 
-                                        into reality.
-                                    </Typography>
-                                    <Typography fontSize='0.875rem' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', pb: 2 }}>
-                                        My journey started with an internship at Scion Production, where I worked as a intern
-                                        doing data analysis in Python. I also had the privilege to intern at Welfie, where I 
-                                        worked on integrating OpenAI API's into a Moodle LMS, automated unit testing, 
-                                        and developed course-generation tools.
-                                    </Typography>
-                                    <Typography fontSize='0.875rem' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', pb: 2 }}>
-                                        I'm always exploring AI, Cloud computing, and Full-stack development, aiming to
-                                        craft intuitive solutions that make a difference.
-                                    </Typography>
-                                    <Typography fontSize='0.875rem' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif' }}>
-                                        Let's connect! I'm open to collaborations, job opportunities, and tech discussions.
-                                    </Typography>*/}
+                                <Grid size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }}> 
                                     {aboutMe.description.map((val, index) => (
                                         <Typography
                                             key={index}
@@ -403,8 +381,77 @@ const Home = () => {
                                 </Grid> 
                             </Grid> 
                             
+                            {/* Testing using list */}
+                            
+                            {jobs.map((value, index) => (
+                                <Grid container 
+                                    gap={2} 
+                                    size={{xs: 7, lg: gridSizes.workExp}}
+                                    sx={{ 
+                                        p: 2, 
+                                        justifyContent: 'center' 
+                                    }}
+                                    ref={(index == 0 ? (el) => (currentRef.current['experience'] = el) : (undefined))}
+                                > 
+                                    <Box 
+                                        sx={{
+                                            '&:hover': {
+                                                bgcolor: '#3e4247' 
+                                            },
+                                            p: 1,
+                                            border: '2px solid #2F3439',
+                                            borderRadius: 2,
+                                            transition: 'background-color 0.05s ease 0.05s'
+                                        }}
+                                    >
+                                        { /* Job Description #1 */}
+                                        <Grid container size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }}> 
+                                            <Grid container spacing={1} size={{xs:4, md: 3}} sx={{ alignItems: 'flex-start' }}>
+                                                <img src={githubIcon} alt='Github Link' /> 
+                                                <Typography variant='h6' 
+                                                    sx={{ 
+                                                        fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+                                                        fontSize: {
+                                                            xs: 16,
+                                                            sm: 16
+                                                        }
+                                                    }}
+                                                >
+                                                    Placeholder
+                                                </Typography>
+                                            </Grid>
+                                            <Grid container size={{xs:8, md: 9}} spacing={0} sx={{ alignItems: 'center' }}> 
+                                                <Typography variant='' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontWeight: 'bold'}}>{value.name}</Typography>
+                                                <Grid size={{xs:12}}>
+                                                    <Typography variant='' fontSize={13} sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value.date}</Typography>
+                                                </Grid>
+                                                <Grid>
+                                                    <Box component='ul' sx={{ pl: 3, mt: 1}}>
+                                                        {value.description.map((value, index) => (
+                                                            <Typography key={index} fontSize={13} component='li' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value}</Typography>
+                                                        ))} 
+                                                    </Box>
+                                                </Grid>
+                                                <Grid size={{xs: 12}}>
+                                                    <Grid size={{xs:12}}>
+                                                        <Stack direction='row' spacing={0} gap={1} flexWrap='wrap'> 
+                                                            {value.skills.map((val, index) => (
+                                                                <Chip
+                                                                    label={val}
+                                                                    color='primary'
+                                                                ></Chip>
+                                                            ))}
+                                                        </Stack>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Box>
+                                </Grid>
+                            ))}
+
                             { /* Experience Section */}
-                            <Grid container gap={2} size={{ xs: 7, lg: 8 }} 
+                            {/* <Grid container gap={2} size={{ xs: 7, lg: gridSizes.workExp }} 
                                 sx={{ 
                                     p: 2, 
                                     justifyContent: 'center' 
@@ -421,9 +468,8 @@ const Home = () => {
                                         borderRadius: 2,
                                         transition: 'background-color 0.05s ease 0.05s'
                                     }}
-                                >
-                                    { /* Job Description #1 */}
-                                    <Grid container size={{xs: 12, sm: 12, md: 12, lg: 11}} sx={{ textAlign: 'left' }}> 
+                                > 
+                                    <Grid container size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }}> 
                                         <Grid container spacing={1} size={{xs:4, md: 3}} sx={{ alignItems: 'flex-start' }}>
                                             <img src={githubIcon} alt='Github Link' /> 
                                             <Typography variant='h6' 
@@ -465,9 +511,9 @@ const Home = () => {
                                         </Grid>
                                     </Grid>
                                 </Box>
-                            </Grid>
+                            </Grid> */}
 
-                            <Grid container gap={2} size={{ xs: 12 }} 
+                            { /* <Grid container gap={2} size={{ xs: 12 }} 
                                 sx={{ 
                                     p: 2, 
                                     justifyContent: 'center' 
@@ -484,8 +530,7 @@ const Home = () => {
                                         borderRadius: 2,
                                         transition: 'background-color 0.05s ease 0.05s'
                                     }}
-                                >
-                                    { /* Job Description #1 */}
+                                > 
                                     <Grid container size={{xs: 12, sm: 12, md: 12, lg: 11}} sx={{ textAlign: 'left' }}> 
                                         <Grid container spacing={2} size={{xs:4}} sx={{ alignItems: 'flex-start' }}>
                                             <img src={githubIcon} alt='Github Link' /> 
@@ -498,7 +543,7 @@ const Home = () => {
                                             </Grid>
                                             <Grid>
                                                 <Box component='ul' sx={{ pl: 3, mt: 1}}>
-                                                    {jobDescription1.description.map((value, index) => (
+                                                    {jobDescription2.description.map((value, index) => (
                                                         <Typography key={index} fontSize={13} component='li' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value}</Typography>
                                                     ))} 
                                                 </Box>
@@ -506,7 +551,7 @@ const Home = () => {
                                             <Grid size={{xs: 12}}>
                                                 <Grid size={{xs:12}}>
                                                     <Stack direction='row' spacing={0} gap={1} flexWrap='wrap'> 
-                                                        {jobDescription1.skills.map((val, index) => (
+                                                        {jobDescription2.skills.map((val, index) => (
                                                             <Chip
                                                                 label={val}
                                                                 color='primary'
@@ -518,9 +563,9 @@ const Home = () => {
                                         </Grid>
                                     </Grid>
                                 </Box>
-                            </Grid>
+                            </Grid> */}
 
-                            <Grid container gap={2} size={{ xs: 12 }} sx={{ p: 1, justifyContent: 'center' }}> 
+                            {/* {<Grid container gap={2} size={{ xs: 12 }} sx={{ p: 1, justifyContent: 'center' }}> 
                                 <Box 
                                     sx={{
                                         '&:hover': {
@@ -630,7 +675,7 @@ const Home = () => {
                                         </Grid>
                                     </Grid>
                                 </Box>
-                            </Grid>  
+                            </Grid>}   */}
                         </Grid>
                     </Box>
                 </Grid>

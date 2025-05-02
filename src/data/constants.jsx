@@ -9,6 +9,8 @@ const aboutMe = {
 }
 
 const jobDescription1 = {
+    name: 'Developer | Scion Productions',
+    date: '10/2024 - Current',
     description: [
         'Developed Python scripts to analyze millions of lines of historical Bitcoin data using various backtesting strategies.',
         'Compared strategy performance to identify profitable trends and optimize outcomes.',
@@ -27,6 +29,8 @@ const jobDescription1 = {
 }
 
 const jobDescription2 = {
+    name: 'Fullstack Intern | Welfie',
+    date: '10/2024 - Current',
     description: [
         'Led development of custom Moodle LMS plugins powered by LLMs for dynamic course and content generation.',
         'Built frontend test scripts with 95% coverage using Python and Selenium, enhancing QA efficiency.',
@@ -46,4 +50,70 @@ const jobDescription2 = {
     ]
 }
 
-export { aboutMe, jobDescription1, jobDescription2 }
+const jobDescription3 = {
+    name: 'Fullstack Intern | Welfie',
+    date: '10/2024 - Current',
+    description: [
+        'Led development of custom Moodle LMS plugins powered by LLMs for dynamic course and content generation.',
+        'Built frontend test scripts with 95% coverage using Python and Selenium, enhancing QA efficiency.',
+        'Set up GCE and Docker environments, laying groundwork for CI/CD pipeline integration.'
+    ],
+    skills: [
+        'Python',
+        'PHP',
+        'unittest',
+        'Selenium',
+        'Bootstrap',
+        'Docker',
+        'PostgreSQL',
+        'Apache2',
+        'GCE',
+        'Moodle'
+    ]
+}
+
+const jobDescription4 = {
+    name: 'Fullstack Intern | Welfie',
+    date: '10/2024 - Current',
+    description: [
+        'Led development of custom Moodle LMS plugins powered by LLMs for dynamic course and content generation.',
+        'Built frontend test scripts with 95% coverage using Python and Selenium, enhancing QA efficiency.',
+        'Set up GCE and Docker environments, laying groundwork for CI/CD pipeline integration.'
+    ],
+    skills: [
+        'Python',
+        'PHP',
+        'unittest',
+        'Selenium',
+        'Bootstrap',
+        'Docker',
+        'PostgreSQL',
+        'Apache2',
+        'GCE',
+        'Moodle'
+    ]
+}
+
+const jobDescription5 = {
+    description: [
+
+    ],
+    skills: [
+
+    ]
+}
+
+const jobs = [
+    jobDescription1,
+    jobDescription2,
+    // jobDescription3,
+    // jobDescription4
+]
+
+const gridSizes = {
+    aboutMe: 8,
+    workExp: 8,
+    jobCard: 8
+}
+
+export { aboutMe, gridSizes, jobDescription1, jobDescription2, jobs }
