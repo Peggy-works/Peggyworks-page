@@ -117,10 +117,33 @@ const jobs = [
     // jobDescription4
 ]
 
+const contentNav = [
+    {
+        sectionName: 'About me',
+        name: 'about'
+    },
+    {
+        sectionName: 'Experiences',
+        name: 'experience'
+    },
+    {
+        sectionName: 'Education',
+        name: 'education'
+    },
+    {
+        sectionName: 'Projects',
+        name: 'projects'
+    },
+    {
+        sectionName: 'Add. Links',
+        name: 'links'
+    }
+]
+
 const gridSizes = {
     aboutMe: 8,
     workExp: 10,
     jobCard: 8
 }
 
-export { aboutMe, gridSizes, jobDescription1, jobDescription2, jobs, education1 }
+export { aboutMe, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav }

@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar.jsx'
 import React, { useRef, useState } from 'react'
 
 // Constants
-import { aboutMe, jobDescription1, jobDescription2, gridSizes, jobs } from '../data/constants.jsx';
+import { aboutMe, jobDescription1, jobDescription2, gridSizes, jobs, contentNav } from '../data/constants.jsx';
 
 // Assets
 import profileImage from '../assets/pf_image.png'
@@ -71,15 +71,23 @@ const Home = () => {
                     > 
                         {/* This is the left column of this two column design */}
                         <Grid 
-                            container size={{ xs: 12, lg: 10, xl: 5 }} 
+                            container 
+                            size={{ xs: 12, lg: 10, xl: 5 }} 
                             sx={{ 
                                 px: 2, 
                                 pt: 2,
-                                width: '100%', 
+                                width: '100%',
+                                height: '100vh',
                                 justifySelf: 'flex-end'
                             }}
                         >
-                            <Grid container size={{ xs: 12 }} sx={{}}>
+                            <Grid 
+                                container 
+                                size={{ xs: 12 }} 
+                                sx={{
+                                    height: '100vh'
+                                }}
+                            >
                                 <Grid container 
                                     sx={{ 
                                         justifyContent: {
@@ -90,7 +98,7 @@ const Home = () => {
                                     }} 
                                     size={{ xs: 12 }}
                                 >
-                                    <Typography variant='h3' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif' }}>
+                                    <Typography variant='h3' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>
                                         Angel Samora
                                     </Typography>
                                 </Grid>
@@ -129,6 +137,43 @@ const Home = () => {
                                         </Grid>
                                     */
                                 }
+                                {/* The top-level grid below are the ones that need to be contained inside another parent grid */}
+                                <Grid 
+                                    container
+                                    sx={{}}
+                                >
+                                    {contentNav.map((value, index) => (
+                                        <Grid container sx={{ alignItems: 'center'}} size={{xs:12}} gap={2}>
+                                            <Box 
+                                                sx={{
+                                                    width: 'fit-content',
+                                                    '& .MuiDivider-root': {
+                                                        transition: 'width 0.2s ease-in-out'
+                                                    },
+                                                    '&:hover .MuiDivider-root': { 
+                                                        width: '150px',
+                                                        bgcolor: '#ffffff85'
+                                                    },
+                                                    '&:hover .MuiTypography-root': {
+                                                        color: '#ffffff85'
+                                                    }
+                                                }}
+                                            >
+                                                <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs:12}} onClick={() => scrollToSection(value.name)}>
+                                                    <Grid size={{xs: 'auto'}}>
+                                                        <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{'0' + (index + 1)}</Typography>
+                                                    </Grid>
+                                                    <Grid sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}} size={{xs: 'auto'}}>
+                                                        <Divider sx={{ height: '1.5px', backgroundColor: 'white', width: '103px'}}></Divider>
+                                                    </Grid>
+                                                    <Grid size={{xs: 'auto'}} >
+                                                        <Typography variant='h6' sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value.sectionName}</Typography>
+                                                    </Grid>
+                                                </Grid>
+                                            </Box>
+                                        </Grid>
+                                    ))}
+                                </Grid>
                                 <Grid container sx={{ alignItems: 'center'}} size={{xs:12}} gap={2}>
                                     <Box 
                                         sx={{
@@ -347,6 +392,7 @@ const Home = () => {
                             
                         }}
                     >
+                        {/* About me Section */}
                         <Grid container size={{ xs: 12 }} 
                             sx={{ 
                                 justifyContent: {
@@ -358,7 +404,6 @@ const Home = () => {
                             }}
                             gap={3}
                         > 
-                            {/* About Me Section */}
                             <Grid container gap={2} size={{ xs: 7, lg: gridSizes.workExp }} 
                                 sx={{ 
                                     p: 2, 
@@ -380,76 +425,9 @@ const Home = () => {
                                         </Typography>
                                     ))}
                                 </Grid> 
-                            </Grid> 
+                            </Grid>  
                             
-                            {/* Work Experience section */}
-                            
-                            {/*jobs.map((value, index) => (
-                                <Grid container 
-                                    gap={2} 
-                                    size={{xs: 7, lg: gridSizes.workExp}}
-                                    sx={{ 
-                                        p: 2, 
-                                        justifyContent: 'center' 
-                                    }}
-                                    ref={(index == 0 ? (el) => (currentRef.current['experience'] = el) : (undefined))}
-                                > 
-                                    <Box 
-                                        sx={{
-                                            '&:hover': {
-                                                bgcolor: '#3e4247' 
-                                            },
-                                            p: 1,
-                                            border: '2px solid #2F3439',
-                                            borderRadius: 2,
-                                            transition: 'background-color 0.05s ease 0.05s'
-                                        }}
-                                    > 
-                                        <Grid container size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }}> 
-                                            <Grid container spacing={1} size={{xs:4, md: 3}} sx={{ alignItems: 'flex-start' }}>
-                                                <img src={githubIcon} alt='Github Link' /> 
-                                                <Typography variant='h6' 
-                                                    sx={{ 
-                                                        fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
-                                                        fontSize: {
-                                                            xs: 16,
-                                                            sm: 16
-                                                        }
-                                                    }}
-                                                >
-                                                    Placeholder
-                                                </Typography>
-                                            </Grid>
-                                            <Grid container size={{xs:8, md: 9}} spacing={0} sx={{ alignItems: 'center' }}> 
-                                                <Typography variant='' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontWeight: 'bold'}}>{value.name}</Typography>
-                                                <Grid size={{xs:12}}>
-                                                    <Typography variant='' fontSize={13} sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value.date}</Typography>
-                                                </Grid>
-                                                <Grid>
-                                                    <Box component='ul' sx={{ pl: 3, mt: 1}}>
-                                                        {value.description.map((value, index) => (
-                                                            <Typography key={index} fontSize={13} component='li' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value}</Typography>
-                                                        ))} 
-                                                    </Box>
-                                                </Grid>
-                                                <Grid size={{xs: 12}}>
-                                                    <Grid size={{xs:12}}>
-                                                        <Stack direction='row' spacing={0} gap={1} flexWrap='wrap'> 
-                                                            {value.skills.map((val, index) => (
-                                                                <Chip
-                                                                    label={val}
-                                                                    color='primary'
-                                                                ></Chip>
-                                                            ))}
-                                                        </Stack>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Grid>
-                            ))*/} 
-
+                            {/* Work experience section */}
                             <Grid container 
                                 gap={2} 
                                 size={{xs: 7, lg: gridSizes.workExp}}
@@ -520,7 +498,7 @@ const Home = () => {
 
                             
 
-                            {/* Education Section */}
+                            {/* Education section */}
                             <Grid container 
                                 gap={2} 
                                 size={{xs: 7, lg: gridSizes.workExp}}
