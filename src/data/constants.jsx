@@ -140,10 +140,31 @@ const contentNav = [
     }
 ]
 
+const linkedIn = {
+    name: 'Linked In',
+    link: ''
+}
+
+const github = {
+    name: 'github',
+    link: ''
+}
+
+const email = {
+    name: 'email',
+    link: ''
+}
+
+const socialMedias = [
+    linkedIn,
+    github,
+    email
+]
+
 const gridSizes = {
     aboutMe: 8,
     workExp: 10,
     jobCard: 8
 }
 
-export { aboutMe, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav }
+export { socialMedias, aboutMe, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav }

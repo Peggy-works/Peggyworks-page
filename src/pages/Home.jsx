@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar.jsx'
 import React, { useRef, useState } from 'react'
 
 // Constants
-import { aboutMe, jobDescription1, jobDescription2, gridSizes, jobs, contentNav } from '../data/constants.jsx';
+import { socialMedias, aboutMe, jobDescription1, jobDescription2, gridSizes, jobs, contentNav } from '../data/constants.jsx';
 
 // Assets
 import profileImage from '../assets/pf_image.png'
@@ -17,6 +17,7 @@ const Home = () => {
     const [expandWorkExp, setToggleWorkExp] = useState(false)
     const [expandProjects, setToggleProjects] = useState(false)
     const [expandAboutMe, setToggleAboutMe] = useState(false)
+    const icons = [linkedinIcon, githubIcon, emailIcon] 
     
     
     const scrollToSection = (id) => { 
@@ -88,6 +89,8 @@ const Home = () => {
                                     height: '100vh'
                                 }}
                             >
+                                {/* These next 3 containers need to be contained*/}
+                                {/* Name/pronouns/image container */}
                                 <Grid container 
                                     sx={{ 
                                         justifyContent: {
@@ -127,17 +130,9 @@ const Home = () => {
                                     }} 
                                 >
                                     <Avatar alt='Angel Samora' src={profileImage} sx={{ width: 200, height: 200}} /> 
-                                </Grid> 
-                                {
-                                    /*
-                                        <Grid sx={{width: '100%'}}>
-                                            <Typography variant="h5" sx={{ textAlign: 'left', mt: 2, fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif' }}>
-                                                Links to me!
-                                            </Typography>
-                                        </Grid>
-                                    */
-                                }
-                                {/* The top-level grid below are the ones that need to be contained inside another parent grid */}
+                                </Grid>  
+
+                                {/* Table of contents container */}
                                 <Grid 
                                     container
                                     sx={{}}
@@ -174,180 +169,22 @@ const Home = () => {
                                         </Grid>
                                     ))}
                                 </Grid>
-                                <Grid container sx={{ alignItems: 'center'}} size={{xs:12}} gap={2}>
-                                    <Box 
-                                        sx={{
-                                            width: 'fit-content',
-                                            '& .MuiDivider-root': {
-                                                transition: 'width 0.2s ease-in-out'
-                                            },
-                                            '&:hover .MuiDivider-root': { 
-                                                width: '150px',
-                                                bgcolor: '#ffffff85'
-                                            },
-                                            '&:hover .MuiTypography-root': {
-                                                color: '#ffffff85'
-                                            }
-                                        }}
-                                    >
-                                        <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs:12}} onClick={() => scrollToSection('about')}>
-                                            <Grid size={{xs: 'auto'}}>
-                                                <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>01</Typography>
-                                            </Grid>
-                                            <Grid sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}} size={{xs: 'auto'}}>
-                                                <Divider sx={{ height: '1.5px', backgroundColor: 'white', width: '103px'}}></Divider>
-                                            </Grid>
-                                            <Grid size={{xs: 'auto'}} >
-                                                <Typography variant='h6' sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>About Me</Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Grid>
-                                <Grid container sx={{ alignItems: 'center'}} size={{xs:12}} gap={2}>
-                                    <Box 
-                                        sx={{
-                                            width: 'fit-content',
-                                            '& .MuiDivider-root': {
-                                                transition: 'width 0.2s ease-in-out'
-                                            },
-                                            '&:hover .MuiDivider-root': { 
-                                                width: '150px',
-                                                bgcolor: '#ffffff85'
-                                            },
-                                            '&:hover .MuiTypography-root': {
-                                                color: '#ffffff85'
-                                            } 
-                                        }}
-                                    >
-                                        <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs:12}} onClick={() => scrollToSection('experience')}>
-                                            <Grid size={{xs: 'auto'}}>
-                                                <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>02</Typography>
-                                            </Grid>
-                                            <Grid sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}} size={{xs: 'auto'}}>
-                                                <Divider sx={{ height: '1.5px', backgroundColor: 'white', width: '100px'}}></Divider>
-                                            </Grid>
-                                            <Grid size={{xs: 'auto'}}>
-                                                <Typography variant='h6' sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Experiences</Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Grid>
-                                <Grid container sx={{ alignItems: 'center'}} size={{xs:12}} gap={2}>
-                                    <Box 
-                                        sx={{
-                                            width: 'fit-content',
-                                            '& .MuiDivider-root': {
-                                                transition: 'width 0.2s ease-in-out'
-                                            },
-                                            '&:hover .MuiDivider-root': { 
-                                                width: '150px',
-                                                bgcolor: '#ffffff85'
-                                            },
-                                            '&:hover .MuiTypography-root': {
-                                                color: '#ffffff85'
-                                            } 
-                                        }}
-                                    >
-                                        <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs:12}} onClick={() => scrollToSection('education')}>
-                                            <Grid size={{xs: 'auto'}}>
-                                                <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>03</Typography>
-                                            </Grid>
-                                            <Grid sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}} size={{xs: 'auto'}}>
-                                                <Divider sx={{ height: '1.5px', backgroundColor: 'white', width: '100px'}}></Divider>
-                                            </Grid>
-                                            <Grid size={{xs: 'auto'}}>
-                                                <Typography variant='h6' sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Education</Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Grid>
-                                <Grid container sx={{ alignItems: 'center'}} size={{xs:12}} gap={2}>
-                                    <Box 
-                                        sx={{
-                                            width: 'fit-content',
-                                            '& .MuiDivider-root': {
-                                                transition: 'width 0.2s ease-in-out'
-                                            },
-                                            '&:hover .MuiDivider-root': { 
-                                                width: '150px',
-                                                bgcolor: '#ffffff85'
-                                            },
-                                            '&:hover .MuiTypography-root': {
-                                                color: '#ffffff85'
-                                            } 
-                                        }}
-                                    >
-                                        <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs:12}} onClick={() => scrollToSection('projects')}>
-                                            <Grid size={{xs: 'auto'}}>
-                                                <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>04</Typography>
-                                            </Grid>
-                                            <Grid sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}} size={{xs: 'auto'}}>
-                                                <Divider sx={{ height: '1.5px', backgroundColor: 'white', width: '100px'}}></Divider>
-                                            </Grid>
-                                            <Grid size={{xs: 'auto'}}>
-                                                <Typography variant='h6' sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Projects</Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Grid>
-                                <Grid container sx={{ alignItems: 'center'}} size={{xs:12}} gap={2}>
-                                    <Box 
-                                        sx={{
-                                            width: 'fit-content',
-                                            '& .MuiDivider-root': {
-                                                transition: 'width 0.2s ease-in-out'
-                                            },
-                                            '&:hover .MuiDivider-root': { 
-                                                width: '150px',
-                                                bgcolor: '#ffffff85'
-                                            },
-                                            '&:hover .MuiTypography-root': {
-                                                color: '#ffffff85'
-                                            } 
-                                        }}
-                                    >
-                                        <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs: 12}} onClick={() => scrollToSection('links')}>
-                                            <Grid size={{xs: 'auto'}}>
-                                                <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>05</Typography>
-                                            </Grid>
-                                            <Grid sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}} size={{xs: 'auto'}}>
-                                                <Divider sx={{ height: '1.5px', backgroundColor: 'white', width: '100px'}}></Divider>
-                                            </Grid>
-                                            <Grid size={{xs: 'auto'}}>
-                                                <Typography variant='h6' sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Add. Links</Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Grid>
+
+                                {/* Social Media links container */}
                                 <Grid container sx={{ justifyContent: 'flex-start', mt: 1, mb: 2}} size={{xs: 12}} gap={0}>
-                                    <Grid size={{xs:'auto'}}>
-                                        <Box>
-                                            <Grid container spacing={2} sx={{ alignItems: 'center'}}>
-                                                <img
-                                                    src={linkedinIcon}
-                                                    alt="Profile"
-                                                    style={{}}
-                                                /> 
-                                                <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>LinkedIn</Typography>
-                                            </Grid>
-                                        </Box> 
-                                    </Grid>
-                                    <Grid size={{xs:'auto'}}>
-                                        <Box>
-                                            <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-                                                <img src={githubIcon} alt='Github Link' /> 
-                                                <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Github</Typography>
-                                            </Grid>
-                                        </Box> 
-                                    </Grid>
-                                    <Grid size={{xs:'auto'}}>
-                                        <Box>
-                                            <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-                                                <img src={githubIcon} alt='Github Link' /> 
-                                                <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Email me</Typography>
-                                            </Grid>
-                                        </Box>  
-                                    </Grid>
+                                    {socialMedias.map((value, index) => (
+                                        <Grid key={index} size={{xs:'auto'}}>
+                                            <Box>
+                                                <Grid container spacing={2} sx={{ alignItems: 'center'}}>
+                                                    <img
+                                                        src={icons[index]}
+                                                        style={{}}
+                                                    /> 
+                                                    <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value.name}</Typography>
+                                                </Grid>
+                                            </Box> 
+                                        </Grid>
+                                    ))}
                                 </Grid>
                             </Grid>
                         </Grid>
