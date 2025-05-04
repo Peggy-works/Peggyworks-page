@@ -1,3 +1,8 @@
+import { Box, Container, Typography, Button, Card, Divider, Collapse, Avatar, Badge, Stack, Chip } from '@mui/material'
+const name = 'Angel Samora'
+const pronoun = 'He/Him/They'
+const age = '28'
+
 const aboutMe = {
     description: [
         'Hello 🌎',
@@ -6,7 +11,32 @@ const aboutMe = {
         'I\'m always exploring AI, Cloud computing, and Full-stack development, aiming to craft intuitive solutions that make a difference.',
         'Let\'s connect! I\'m open to collaborations, job opportunities, and tech discussions.'
     ]
-}
+} 
+
+const aboutMeParts = (profileImage) => [
+    {
+        name, 
+        snippet: (
+            <Typography variant='h3' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>
+                Angel Samora
+            </Typography>
+        )
+    },
+    {
+        pronoun,
+        snippet: (
+            <Typography sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', color: '#cfcfcf', pb: 2 }}>
+                He/Him/They, 23
+            </Typography>
+        )
+    },
+    {
+        age,
+        snippet: (
+            <Avatar alt='Angel Samora' src={profileImage} sx={{ width: 200, height: 200}} /> 
+        )
+    }
+]
 
 const jobDescription1 = {
     name: 'Developer | Scion Productions',
@@ -138,7 +168,7 @@ const contentNav = [
         sectionName: 'Add. Links',
         name: 'links'
     }
-]
+] 
 
 const linkedIn = {
     name: 'Linked In',
@@ -167,4 +197,4 @@ const gridSizes = {
     jobCard: 8
 }
 
-export { socialMedias, aboutMe, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav }
+export { socialMedias, aboutMe, aboutMeParts, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav }

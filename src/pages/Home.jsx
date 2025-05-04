@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar.jsx'
 import React, { useRef, useState } from 'react'
 
 // Constants
-import { socialMedias, aboutMe, jobDescription1, jobDescription2, gridSizes, jobs, contentNav } from '../data/constants.jsx';
+import { socialMedias, aboutMe, aboutMeParts, jobDescription1, jobDescription2, gridSizes, jobs, contentNav } from '../data/constants.jsx';
 
 // Assets
 import profileImage from '../assets/pf_image.png'
@@ -18,6 +18,7 @@ const Home = () => {
     const [expandProjects, setToggleProjects] = useState(false)
     const [expandAboutMe, setToggleAboutMe] = useState(false)
     const icons = [linkedinIcon, githubIcon, emailIcon] 
+    const parts = aboutMeParts(profileImage)
     
     
     const scrollToSection = (id) => { 
@@ -88,49 +89,29 @@ const Home = () => {
                                 sx={{
                                     height: '100vh'
                                 }}
-                            >
-                                {/* These next 3 containers need to be contained*/}
+                            > 
                                 {/* Name/pronouns/image container */}
-                                <Grid container 
-                                    sx={{ 
-                                        justifyContent: {
-                                            xs: 'center',
-                                            md: 'center',
-                                            lg: 'flex-start'
-                                        }
-                                    }} 
-                                    size={{ xs: 12 }}
+                                <Grid 
+                                    container
+                                    size={{xs:12}}
+                                    sx={{alignContent: 'flex-start'}}
                                 >
-                                    <Typography variant='h3' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>
-                                        Angel Samora
-                                    </Typography>
-                                </Grid>
-                                <Grid container 
-                                    sx={{
-                                        justifyContent: {
-                                            xs: 'center',
-                                            md: 'center',
-                                            lg: 'flex-start'
-                                        }
-                                    }} 
-                                    size={{ xs: 12 }}
-                                >
-                                    <Typography sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', color: '#cfcfcf', pb: 2 }}>
-                                        He/Him/They, 23
-                                    </Typography>
-                                </Grid>
-                                <Grid container size={{xs: 12}} 
-                                    sx={{ 
-                                        pb: 2,
-                                        justifyContent: {
-                                            xs: 'center',
-                                            md: 'center',
-                                            lg: 'flex-start'
-                                        }
-                                    }} 
-                                >
-                                    <Avatar alt='Angel Samora' src={profileImage} sx={{ width: 200, height: 200}} /> 
-                                </Grid>  
+                                    {parts.map((value, index) => (
+                                        <Grid container 
+                                            sx={{ 
+                                                justifyContent: {
+                                                    xs: 'center',
+                                                    md: 'center',
+                                                    lg: 'flex-start'
+                                                },
+                                                height: 'fit-content'
+                                            }} 
+                                            size={{ xs: 12 }}
+                                        >
+                                            {value.snippet}
+                                        </Grid>
+                                    ))}
+                                </Grid> 
 
                                 {/* Table of contents container */}
                                 <Grid 
