@@ -143,8 +143,8 @@ const education1 = {
 const jobs = [
     jobDescription1,
     jobDescription2,
-    // jobDescription3,
-    // jobDescription4
+    jobDescription3,
+    jobDescription4
 ]
 
 const contentNav = [

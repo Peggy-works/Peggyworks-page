@@ -13,7 +13,10 @@ import githubIcon from '../assets/github_icon.png'
 import linkedinIcon from '../assets/linkedin_icon.png'
 
 const Home = () => {
-    const currentRef = useRef({})
+    const sectionRef = useRef({})
+    const containerRef = useRef(null)
+    const parentContainerRef = useRef(null)
+
     const [expandWorkExp, setToggleWorkExp] = useState(false)
     const [expandProjects, setToggleProjects] = useState(false)
     const [expandAboutMe, setToggleAboutMe] = useState(false)
@@ -22,8 +25,23 @@ const Home = () => {
     
     
     const scrollToSection = (id) => { 
+        const section = sectionRef.current[id]
+        const container = containerRef.current
+        const parentContainer = parentContainerRef.current
         console.log(`section: ${id}`) 
-        currentRef.current[id]?.scrollIntoView({behavior: 'smooth'}) 
+        //sectionRef.current[id]?.scrollIntoView({behavior: 'smooth', block: 'start'}) 
+        if(section && container){
+            const containerTop = container.getBoundingClientRect().top
+            const sectionTop = section.getBoundingClientRect().top
+            console.log(`Container Top: ${containerTop}`)
+            console.log(`SectionTop: ${sectionTop}`)
+            const scrollOffset = sectionTop
+            container.scrollTo({
+                top: section.offsetTop - 32,
+                behavior: 'smooth',
+                
+            })
+        }
     }
 
     const handleExpand = (e) => {
@@ -33,7 +51,7 @@ const Home = () => {
     return (
         <Box
             sx={{ 
-                backgroundColor: '#2F3439', 
+                backgroundColor: '#2F3439',
                 height: '100vh', 
                 width: '100%',
                 overflowY: {
@@ -49,6 +67,7 @@ const Home = () => {
                 scrollbarWidth: "none" ,
                 boxSizing: 'border-box'
             }}
+            ref={parentContainerRef}
         >
             {/*<Navbar scrollToSection={scrollToSection} />*/}
             <Grid container> 
@@ -57,8 +76,9 @@ const Home = () => {
                     sx={{ 
                         pt: {
                             xs: 0,
-                            md: 4
-                        }
+                            md: 0
+                        },
+                        overflowY: 'hidden'
                     }} 
                     position='sticky'
                 >
@@ -67,7 +87,7 @@ const Home = () => {
                             height: {
                                 xs: 'auto',
                                 md: 'auto'
-                            }, 
+                            },  
                             width: '100%'
                         }}
                     > 
@@ -78,6 +98,9 @@ const Home = () => {
                             sx={{ 
                                 px: 2, 
                                 pt: 2,
+                                mt: {
+                                    xs: 4
+                                },
                                 width: '100%',
                                 height: '100vh',
                                 justifySelf: 'flex-end'
@@ -116,23 +139,44 @@ const Home = () => {
                                 {/* Table of contents container */}
                                 <Grid 
                                     container
-                                    sx={{}}
+                                    sx={{
+                                        alignContent: 'center'
+                                    }}
                                 >
                                     {contentNav.map((value, index) => (
-                                        <Grid container sx={{ alignItems: 'center'}} size={{xs:12}} gap={2}>
+                                        <Grid 
+                                            container 
+                                            sx={{ 
+                                                alignItems: 'center', 
+                                                height: 'fit-content', 
+                                                py: '9px',
+                                                '& .MuiDivider-root': {
+                                                    transition: 'width 0.13s ease-in-out'
+                                                },
+                                                '&:hover .MuiDivider-root': { 
+                                                    width: '90px',
+                                                    bgcolor: '#ffffff85'
+                                                },
+                                                '&:hover .MuiTypography-root': {
+                                                    color: '#ffffff85'
+                                                }
+                                            }} 
+                                            size={{xs:12}} 
+                                            gap={2}
+                                        >
                                             <Box 
-                                                sx={{
+                                                sx={{ 
                                                     width: 'fit-content',
-                                                    '& .MuiDivider-root': {
-                                                        transition: 'width 0.2s ease-in-out'
-                                                    },
-                                                    '&:hover .MuiDivider-root': { 
-                                                        width: '150px',
-                                                        bgcolor: '#ffffff85'
-                                                    },
-                                                    '&:hover .MuiTypography-root': {
-                                                        color: '#ffffff85'
-                                                    }
+                                                    // '& .MuiDivider-root': {
+                                                    //     transition: 'width 0.2s ease-in-out'
+                                                    // },
+                                                    // '&:hover .MuiDivider-root': { 
+                                                    //     width: '150px',
+                                                    //     bgcolor: '#ffffff85'
+                                                    // },
+                                                    // '&:hover .MuiTypography-root': {
+                                                    //     color: '#ffffff85'
+                                                    // }
                                                 }}
                                             >
                                                 <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs:12}} onClick={() => scrollToSection(value.name)}>
@@ -140,7 +184,7 @@ const Home = () => {
                                                         <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{'0' + (index + 1)}</Typography>
                                                     </Grid>
                                                     <Grid sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}} size={{xs: 'auto'}}>
-                                                        <Divider sx={{ height: '1.5px', backgroundColor: 'white', width: '103px'}}></Divider>
+                                                        <Divider sx={{ height: '1.5px', backgroundColor: 'white', width: '45px'}}></Divider>
                                                     </Grid>
                                                     <Grid size={{xs: 'auto'}} >
                                                         <Typography variant='h6' sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value.sectionName}</Typography>
@@ -177,7 +221,7 @@ const Home = () => {
                     sx={{ 
                         pt: {
                             xs: 0,
-                            md: 4,
+                            md: 0,
                             overflowY: {
                                 xs: 'auto',
                                 sm: 'auto',
@@ -187,6 +231,9 @@ const Home = () => {
                             "&::-webkit-scrollbar": { 
                                 display: "none" 
                             }, 
+                            mt: {
+                                xs: 4
+                            },
                             msOverflowStyle: "none", 
                             scrollbarWidth: "none" 
                         }
@@ -196,6 +243,9 @@ const Home = () => {
                         sx={{ 
                             height: 'calc(100vh - 32px)', 
                             width: '100%', 
+                            pt: {
+                                xs: 4
+                            },
                             overflowY: {
                                 xs: 'visible',
                                 sm: 'visible',
@@ -209,8 +259,9 @@ const Home = () => {
                             scrollbarWidth: "none" 
                             
                         }}
+                        ref={containerRef}
                     >
-                        {/* About me Section */}
+                        
                         <Grid container size={{ xs: 12 }} 
                             sx={{ 
                                 justifyContent: {
@@ -221,7 +272,9 @@ const Home = () => {
                                 }
                             }}
                             gap={3}
-                        > 
+                            ref={(el) => (sectionRef.current['about'] = el)}
+                        >
+                            {/* About me Section */} 
                             <Grid container gap={2} size={{ xs: 7, lg: gridSizes.workExp }} 
                                 sx={{ 
                                     p: 2, 
@@ -230,7 +283,7 @@ const Home = () => {
                                         sm: 'flex-start'
                                     }
                                 }}
-                                ref={(el) => (currentRef.current['about'] = el)}
+                                // ref={(el) => (sectionRef.current['about'] = el)}
                             >  
                                 <Grid size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }}> 
                                     {aboutMe.description.map((val, index) => (
@@ -253,7 +306,7 @@ const Home = () => {
                                     p: 2, 
                                     justifyContent: 'center' 
                                 }}
-                                ref={(el) => (currentRef.current['experience'] = el)}
+                                ref={(el) => (sectionRef.current['experience'] = el)}
                             > 
                                 {jobs.map((value, index) => (
                                     <Box 
