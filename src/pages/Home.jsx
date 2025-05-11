@@ -26,16 +26,9 @@ const Home = () => {
     
     const scrollToSection = (id) => { 
         const section = sectionRef.current[id]
-        const container = containerRef.current
-        const parentContainer = parentContainerRef.current
-        console.log(`section: ${id}`) 
-        //sectionRef.current[id]?.scrollIntoView({behavior: 'smooth', block: 'start'}) 
-        if(section && container){
-            const containerTop = container.getBoundingClientRect().top
-            const sectionTop = section.getBoundingClientRect().top
-            console.log(`Container Top: ${containerTop}`)
-            console.log(`SectionTop: ${sectionTop}`)
-            const scrollOffset = sectionTop
+        const container = containerRef.current 
+        console.log(`section: ${id}`)  
+        if(section && container){ 
             container.scrollTo({
                 top: section.offsetTop - 32,
                 behavior: 'smooth',
@@ -94,12 +87,15 @@ const Home = () => {
                         {/* This is the left column of this two column design */}
                         <Grid 
                             container 
-                            size={{ xs: 12, lg: 10, xl: 5 }} 
+                            size={{ xs: 12, lg: 10, xl: 6 }} 
                             sx={{ 
-                                px: 2, 
+                                px: 1, 
                                 pt: 2,
                                 mt: {
                                     xs: 4
+                                },
+                                pb: {
+                                    xs: 6
                                 },
                                 width: '100%',
                                 height: '100vh',
@@ -110,14 +106,17 @@ const Home = () => {
                                 container 
                                 size={{ xs: 12 }} 
                                 sx={{
-                                    height: '100vh'
+                                    height: '100vh',
                                 }}
                             > 
                                 {/* Name/pronouns/image container */}
                                 <Grid 
                                     container
                                     size={{xs:12}}
-                                    sx={{alignContent: 'flex-start'}}
+                                    sx={{
+                                        alignContent: 'flex-start',
+                                        p: 1 // Apply this to all other containers
+                                    }}
                                 >
                                     {parts.map((value, index) => (
                                         <Grid container 
@@ -140,7 +139,8 @@ const Home = () => {
                                 <Grid 
                                     container
                                     sx={{
-                                        alignContent: 'center'
+                                        alignContent: 'flex-start',
+                                        p: 1
                                     }}
                                 >
                                     {contentNav.map((value, index) => (
@@ -149,7 +149,7 @@ const Home = () => {
                                             sx={{ 
                                                 alignItems: 'center', 
                                                 height: 'fit-content', 
-                                                py: '9px',
+                                                py: '6px',
                                                 '& .MuiDivider-root': {
                                                     transition: 'width 0.13s ease-in-out'
                                                 },
@@ -163,23 +163,14 @@ const Home = () => {
                                             }} 
                                             size={{xs:12}} 
                                             gap={2}
+                                            onClick={() => scrollToSection(value.name)}
                                         >
                                             <Box 
                                                 sx={{ 
-                                                    width: 'fit-content',
-                                                    // '& .MuiDivider-root': {
-                                                    //     transition: 'width 0.2s ease-in-out'
-                                                    // },
-                                                    // '&:hover .MuiDivider-root': { 
-                                                    //     width: '150px',
-                                                    //     bgcolor: '#ffffff85'
-                                                    // },
-                                                    // '&:hover .MuiTypography-root': {
-                                                    //     color: '#ffffff85'
-                                                    // }
-                                                }}
+                                                    width: 'fit-content'
+                                                }} 
                                             >
-                                                <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs:12}} onClick={() => scrollToSection(value.name)}>
+                                                <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs:12}} >
                                                     <Grid size={{xs: 'auto'}}>
                                                         <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{'0' + (index + 1)}</Typography>
                                                     </Grid>
@@ -196,9 +187,9 @@ const Home = () => {
                                 </Grid>
 
                                 {/* Social Media links container */}
-                                <Grid container sx={{ justifyContent: 'flex-start', mt: 1, mb: 2}} size={{xs: 12}} gap={0}>
+                                <Grid container sx={{ justifyContent: 'flex-start', mt: 1, mb: 2, alignContent: 'flex-start', p: 1}} size={{xs: 12}} gap={2}>
                                     {socialMedias.map((value, index) => (
-                                        <Grid key={index} size={{xs:'auto'}}>
+                                        <Grid key={index} size={{xs:'auto'}} sx={{height: 'fit-content'}}>
                                             <Box>
                                                 <Grid container spacing={2} sx={{ alignItems: 'center'}}>
                                                     <img
