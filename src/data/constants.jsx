@@ -197,4 +197,32 @@ const gridSizes = {
     jobCard: 8
 }
 
+const project1 = {
+    'stars': 0,
+    'primaryLanguage': 'Kotlin',
+    'title': 'MovInsight',
+    'desc': '',
+}
+
+const project2 = {
+    'stars': 0,
+    'primaryLanguage': '',
+    'title': '',
+    'desc': '',
+}
+
+const project3 = {
+    'stars': 0,
+    'primaryLanguage': '',
+    'title': '',
+    'desc': '',
+}
+
+const project4 = {
+    'stars': 0,
+    'primaryLanguage': '',
+    'title': '',
+    'desc': '',
+}
+
 export { socialMedias, aboutMe, aboutMeParts, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav }

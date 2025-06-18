@@ -368,6 +368,7 @@ const Home = () => {
                                     p: 2, 
                                     justifyContent: 'center' 
                                 }} 
+                                ref={(el) => (sectionRef.current['education'] = el)}
                             > 
                                 <Box 
                                     sx={{
@@ -379,11 +380,9 @@ const Home = () => {
                                         borderRadius: 2,
                                         transition: 'background-color 0.05s ease 0.05s'
                                     }}
-                                >
-                                    { /* Job Description #1 */}
+                                > 
                                     <Grid container size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }}> 
-                                        <Grid container spacing={1} size={{xs:4, md: 3}} sx={{ alignItems: 'flex-start' }}>
-                                            <img src={githubIcon} alt='Github Link' /> 
+                                        <Grid container spacing={1} size={{xs:4, md: 3}} sx={{ alignItems: 'flex-start' }}> 
                                             <Typography variant='h6' 
                                                 sx={{ 
                                                     fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
@@ -393,21 +392,71 @@ const Home = () => {
                                                     }
                                                 }}
                                             >
-                                                Placeholder
+                                                2022 - 2024
                                             </Typography>
                                         </Grid>
                                         <Grid container size={{xs:8, md: 9}} spacing={0} sx={{ alignItems: 'center' }}> 
-                                            <Typography variant='' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontWeight: 'bold'}}>asdf</Typography>
+                                            <Typography variant='' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontWeight: 'bold'}}>Computer Science</Typography>
                                             <Grid size={{xs:12}}>
-                                                <Typography variant='' fontSize={13} sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>asdf</Typography>
+                                                <Typography variant='' fontSize={13} sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>California State University</Typography>
                                             </Grid>
                                             <Grid>
-                                                <Typography fontSize={13} component='li' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Led development of custom Moodle LMS plugins powered by LLMs for dynamic course and content generation.</Typography>
+                                                <Typography fontSize={13} sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Studied Computer Science with a focus on building software, exploring AI, and working with systems like cloud computing and mobile apps. Completed a capstone project that involved designing and developing a full-stack application, integrating concepts from software engineering and system design.</Typography>
                                             </Grid> 
                                         </Grid>
                                     </Grid>
                                 </Box>
                             </Grid>
+
+                            {/* Projects section */}
+                            <Grid container 
+                                gap={2} 
+                                size={{xs: 7, lg: gridSizes.workExp}}
+                                sx={{ 
+                                    p: 2, 
+                                    justifyContent: 'center' 
+                                }} 
+                                ref={(el) => (sectionRef.current['education'] = el)}
+                            > 
+                                <Box 
+                                    sx={{
+                                        '&:hover': {
+                                            bgcolor: '#3e4247' 
+                                        },
+                                        p: 1,
+                                        border: '2px solid #2F3439',
+                                        borderRadius: 2,
+                                        transition: 'background-color 0.05s ease 0.05s'
+                                    }}
+                                > 
+                                    <Grid container size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }}> 
+                                        <Grid container spacing={1} size={{xs:4, md: 3}} sx={{ alignItems: 'flex-start' }}> 
+                                            <Typography variant='h6' 
+                                                sx={{ 
+                                                    fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+                                                    fontSize: {
+                                                        xs: 16,
+                                                        sm: 16
+                                                    }
+                                                }}
+                                            >
+                                                2022 - 2024
+                                            </Typography>
+                                        </Grid>
+                                        <Grid container size={{xs:8, md: 9}} spacing={0} sx={{ alignItems: 'center' }}> 
+                                            <Typography variant='' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontWeight: 'bold'}}>Computer Science</Typography>
+                                            <Grid size={{xs:12}}>
+                                                <Typography variant='' fontSize={13} sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>California State University</Typography>
+                                            </Grid>
+                                            <Grid>
+                                                <Typography fontSize={13} sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Studied Computer Science with a focus on building software, exploring AI, and working with systems like cloud computing and mobile apps. Completed a capstone project that involved designing and developing a full-stack application, integrating concepts from software engineering and system design.</Typography>
+                                            </Grid> 
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                            </Grid>
+
+                            {/*Footer section*/}
                         </Grid>
                     </Box>
                 </Grid>
