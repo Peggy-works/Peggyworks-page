@@ -198,31 +198,38 @@ const gridSizes = {
 }
 
 const project1 = {
-    'stars': 0,
+    'stars': 1,
     'primaryLanguage': 'Kotlin',
     'title': 'MovInsight',
-    'desc': '',
+    'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.',
 }
 
 const project2 = {
-    'stars': 0,
-    'primaryLanguage': '',
+    'stars': 4,
+    'primaryLanguage': 'Kotlin',
     'title': '',
-    'desc': '',
+    'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.', 
 }
 
 const project3 = {
-    'stars': 0,
-    'primaryLanguage': '',
+    'stars': 2,
+    'primaryLanguage': 'Kotlin',
     'title': '',
-    'desc': '',
+    'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.',
 }
 
 const project4 = {
-    'stars': 0,
-    'primaryLanguage': '',
+    'stars': 1,
+    'primaryLanguage': 'Kotlin',
     'title': '',
-    'desc': '',
+    'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.',
 }
 
-export { socialMedias, aboutMe, aboutMeParts, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav }
+const projects = [
+    project1,
+    project2,
+    project3,
+    project4
+]
+
+export { socialMedias, aboutMe, aboutMeParts, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav, projects }

@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar.jsx'
 import React, { useRef, useState } from 'react'
 
 // Constants
-import { socialMedias, aboutMe, aboutMeParts, jobDescription1, jobDescription2, gridSizes, jobs, contentNav } from '../data/constants.jsx';
+import { socialMedias, aboutMe, aboutMeParts, jobDescription1, jobDescription2, gridSizes, jobs, contentNav, projects } from '../data/constants.jsx';
 
 // Assets
 import profileImage from '../assets/pf_image.png'
@@ -429,8 +429,83 @@ const Home = () => {
                                         transition: 'background-color 0.05s ease 0.05s'
                                     }}
                                 > 
-                                    <Grid container size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }}> 
-                                        <Grid container spacing={1} size={{xs:4, md: 3}} sx={{ alignItems: 'flex-start' }}> 
+                                    <Grid container size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }} spacing={1}> 
+                                        {
+                                            projects.map((value, index) => (
+                                                <Grid container size={{xs:12, md: 12}} sx={{alignItems: 'flex-start'}}> 
+                                                    <Grid size={{xs:6}}>
+                                                        <Typography>
+                                                            Stars: {value.stars}
+                                                        </Typography>
+                                                    </Grid>
+                                                    <Grid size={{xs: 6}}>
+                                                        <Typography>
+                                                            {value.primaryLanguage}
+                                                        </Typography>
+                                                    </Grid>
+                                                    <Grid size={{xs:12}}>
+                                                        {value.desc}
+                                                    </Grid>
+                                                    {/* {Object.entries(value).map(([key, value]) => {
+                                                        return (
+                                                            <Grid container size={{xs: 12}} sx={{}} >
+                                                                <Grid size={{xs: 6}}>
+                                                                    <Typography>
+                                                                        {key} {value}
+                                                                    </Typography>
+                                                                </Grid>
+                                                                <Grid size={{xs:6}}>
+                                                                    <Typography>
+                                                                        {key}
+                                                                    </Typography>
+                                                                </Grid>
+                                                            </Grid>
+                                                        )
+                                                    })}  */}
+                                                    {/* {Object.entries(value).map(([key, value]) => {
+                                                        return (
+                                                            <Grid container size={{xs: 12}} sx={{}} >
+                                                                <Grid size={{xs: 6}}>
+                                                                    <Typography>
+                                                                        {key} {value}
+                                                                    </Typography>
+                                                                </Grid>
+                                                                <Grid size={{xs:6}}>
+                                                                    <Typography>
+                                                                        {}
+                                                                    </Typography>
+                                                                </Grid>
+                                                            </Grid>
+                                                        )
+                                                    })} */}
+                                                    {/* <Typography 
+                                                        variant='h6'
+                                                        sx={{ 
+                                                            fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+                                                            fontSize: {
+                                                                xs: 16,
+                                                                sm: 16
+                                                            }
+                                                        }}
+                                                    >
+                                                        {value.desc} 
+                                                    </Typography>
+                                                    <Typography 
+                                                        variant='h6'
+                                                        sx={{ 
+                                                            fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+                                                            fontSize: {
+                                                                xs: 16,
+                                                                sm: 16
+                                                            }
+                                                        }}
+                                                    >
+                                                        {value.primaryLanguage} 
+                                                    </Typography> */}
+                                                </Grid>
+                                            ))
+                                        } 
+                                        {/* <Grid container spacing={1} size={{xs:6, md: 6}} sx={{ alignItems: 'flex-start' }}> 
                                             <Typography variant='h6' 
                                                 sx={{ 
                                                     fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
@@ -442,8 +517,8 @@ const Home = () => {
                                             >
                                                 2022 - 2024
                                             </Typography>
-                                        </Grid>
-                                        <Grid container size={{xs:8, md: 9}} spacing={0} sx={{ alignItems: 'center' }}> 
+                                        </Grid> */}
+                                        {/* <Grid container size={{xs:8, md: 9}} spacing={0} sx={{ alignItems: 'center' }}> 
                                             <Typography variant='' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontWeight: 'bold'}}>Computer Science</Typography>
                                             <Grid size={{xs:12}}>
                                                 <Typography variant='' fontSize={13} sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>California State University</Typography>
@@ -451,7 +526,7 @@ const Home = () => {
                                             <Grid>
                                                 <Typography fontSize={13} sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>Studied Computer Science with a focus on building software, exploring AI, and working with systems like cloud computing and mobile apps. Completed a capstone project that involved designing and developing a full-stack application, integrating concepts from software engineering and system design.</Typography>
                                             </Grid> 
-                                        </Grid>
+                                        </Grid> */}
                                     </Grid>
                                 </Box>
                             </Grid>
