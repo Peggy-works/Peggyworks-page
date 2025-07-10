@@ -417,87 +417,54 @@ const Home = () => {
                                     justifyContent: 'center' 
                                 }} 
                                 ref={(el) => (sectionRef.current['education'] = el)}
-                            > 
-                                <Box 
-                                    sx={{
-                                        '&:hover': {
-                                            bgcolor: '#3e4247' 
-                                        },
-                                        p: 1,
-                                        border: '2px solid #2F3439',
-                                        borderRadius: 2,
-                                        transition: 'background-color 0.05s ease 0.05s'
-                                    }}
-                                > 
-                                    {  
-                                        projects.map((value, index) => (
-                                            <Box 
-                                                sx={{
-                                                    '&:hover': {
-                                                        bgcolor: '#3e4247' 
-                                                    },
-                                                    p: 1,
-                                                    border: '2px solid #2F3439',
-                                                    borderRadius: 2,
-                                                    transition: 'background-color 0.05s ease 0.05s'
-                                                }}
-                                            >  
-                                                <Grid container size={{xs:12, md: 12}} sx={{alignItems: 'flex-start'}}> 
-                                                    <Grid size={{xs:6}}>
-                                                        <Typography>
-                                                            Stars: {value.stars}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid size={{xs: 6}}>
-                                                        <Typography>
-                                                            {value.primaryLanguage}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid size={{xs:12}}>
-                                                        {value.desc}
-                                                    </Grid> 
+                            >  
+                                {  
+                                    projects.map((value, index) => (
+                                        <Box 
+                                            sx={{
+                                                '&:hover': {
+                                                    bgcolor: '#3e4247' 
+                                                },
+                                                p: 1,
+                                                border: '2px solid #2F3439',
+                                                borderRadius: 2,
+                                                transition: 'background-color 0.05s ease 0.05s'
+                                            }}
+                                        >  
+                                            <Grid container size={{xs:12, md: 12}} sx={{alignItems: 'flex-start'}} spacing={1}> 
+                                                <Grid size={{xs:6}} sx={{textAlign: 'left'}}>
+                                                    <Typography>
+                                                        Stars: {value.stars}
+                                                    </Typography>
                                                 </Grid>
-                                            </Box>
-                                        ))
-                                    }
-                                    <Grid container size={{xs: 12, sm: 12, md: 12, lg: 12}} sx={{ textAlign: 'left' }} spacing={1}> 
-                                        {
-                                            // projects.map((value, index) => (
-                                            //     <Grid container size={{xs:12, md: 12}} sx={{alignItems: 'flex-start'}}> 
-                                            //         <Grid size={{xs:6}}>
-                                            //             <Typography>
-                                            //                 Stars: {value.stars}
-                                            //             </Typography>
-                                            //         </Grid>
-                                            //         <Grid size={{xs: 6}}>
-                                            //             <Typography>
-                                            //                 {value.primaryLanguage}
-                                            //             </Typography>
-                                            //         </Grid>
-                                            //         <Grid size={{xs:12}}>
-                                            //             {value.desc}
-                                            //         </Grid>
-                                            //         {/* {Object.entries(value).map(([key, value]) => {
-                                            //             return (
-                                            //                 <Grid container size={{xs: 12}} sx={{}} >
-                                            //                     <Grid size={{xs: 6}}>
-                                            //                         <Typography>
-                                            //                             {key} {value}
-                                            //                         </Typography>
-                                            //                     </Grid>
-                                            //                     <Grid size={{xs:6}}>
-                                            //                         <Typography>
-                                            //                             {key}
-                                            //                         </Typography>
-                                            //                     </Grid>
-                                            //                 </Grid>
-                                            //             )
-                                            //         })}  */}
-                                            //     </Grid>
-                                            // ))
-                                        }  
-                                    </Grid>
-                                </Box>
+                                                <Grid size={{xs: 6}}>
+                                                    <Typography>
+                                                        {value.primaryLanguage}
+                                                    </Typography>
+                                                </Grid>
+                                                <Grid size={{xs:12}} sx={{textAlign: 'left'}}>
+                                                    <Typography>
+                                                        {value.title}
+                                                    </Typography>
+                                                </Grid>
+                                                <Grid size={{xs:12}}>
+                                                    <Typography>
+                                                        {value.desc}
+                                                    </Typography>
+                                                </Grid> 
+                                                <Grid container size={{xs:12}} sx={{justifyContent: 'flex-end'}}>
+                                                    <Button
+                                                        variant='contained'
+                                                        component='a'
+                                                        href={value.link}
+                                                    >
+                                                        Learn more...
+                                                    </Button>
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                    ))
+                                }  
                             </Grid>
 
                             {/*Footer section*/}

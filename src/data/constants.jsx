@@ -201,20 +201,23 @@ const project1 = {
     'stars': 1,
     'primaryLanguage': 'Kotlin',
     'title': 'MovInsight',
+    'link': 'https://github.com/RaigZ/MovInsight',
     'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.',
 }
 
 const project2 = {
-    'stars': 4,
+    'stars': 1,
     'primaryLanguage': 'Kotlin',
-    'title': '',
-    'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.', 
+    'title': 'MovInsight',
+    'link': 'https://github.com/RaigZ/MovInsight',
+    'desc': 'Android app that searches and showcases through movie content and has users add or delete movies from their own watchlist', 
 }
 
 const project3 = {
     'stars': 2,
     'primaryLanguage': 'Kotlin',
     'title': '',
+    'link': 'https://github.com/RaigZ/MovInsight',
     'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.',
 }
 
@@ -222,6 +225,7 @@ const project4 = {
     'stars': 1,
     'primaryLanguage': 'Kotlin',
     'title': '',
+    'link': 'https://github.com/RaigZ/MovInsight',
     'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.',
 }
 
