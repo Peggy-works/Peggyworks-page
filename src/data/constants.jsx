@@ -172,12 +172,12 @@ const contentNav = [
 
 const linkedIn = {
     name: 'Linked In',
-    link: ''
+    link: 'https://www.linkedin.com/in/angel-samora-6a912b1b5/'
 }
 
 const github = {
     name: 'github',
-    link: ''
+    link: 'https://github.com/Peggy-works'
 }
 
 const email = {
@@ -199,9 +199,9 @@ const gridSizes = {
 
 const project1 = {
     'stars': 1,
-    'primaryLanguage': 'Kotlin',
-    'title': 'MovInsight',
-    'link': 'https://github.com/RaigZ/MovInsight',
+    'primaryLanguage': 'Typescript + NodeJS',
+    'title': 'AutoGrader',
+    'link': 'https://github.com/tbellicha/AutoGrader',
     'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.',
 }
 
@@ -215,19 +215,19 @@ const project2 = {
 
 const project3 = {
     'stars': 2,
-    'primaryLanguage': 'Kotlin',
-    'title': '',
-    'link': 'https://github.com/RaigZ/MovInsight',
-    'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.',
+    'primaryLanguage': 'Javascript + Java',
+    'title': 'Gettr',
+    'link': 'https://github.com/Peggy-works/GettrProject',
+    'desc': 'A forum web application where users can interact and communicate with one another on projects and ideas they may have. What makes Gettr different from other web application forums is that it is specifically tailored towards California State University San Marcos (CSUSM) students and faculty.',
 }
 
 const project4 = {
-    'stars': 1,
-    'primaryLanguage': 'Kotlin',
-    'title': '',
-    'link': 'https://github.com/RaigZ/MovInsight',
-    'desc': 'A simple two-column portfolio template that is easy and quick to customizefor your own purposes. Mobile friendly.',
-}
+    'stars': 2,
+    'primaryLanguage': 'PHP, HTML, CSS, JS',
+    'title': 'Blog',
+    'link': 'https://github.com/RaigZ/blog',
+    'desc': 'A simple blog web app made with Bootstrap and preserves user sessions, contains users, posts and comments',
+} 
 
 const projects = [
     project1,
@@ -236,4 +236,4 @@ const projects = [
     project4
 ]
 
-export { socialMedias, aboutMe, aboutMeParts, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav, projects }
+export { socialMedias, aboutMe, aboutMeParts, gridSizes, jobDescription1, jobDescription2, jobs, education1, contentNav, projects, linkedIn, github, email }

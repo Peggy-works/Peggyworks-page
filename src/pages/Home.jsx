@@ -1,10 +1,10 @@
-import { Box, Container, Typography, Button, Card, Divider, Collapse, Avatar, Badge, Stack, Chip } from '@mui/material'
+import { Box, Container, Typography, Button, Card, Divider, Collapse, Avatar, Badge, Stack, Chip, Link } from '@mui/material'
 import Grid from '@mui/material/Grid2';
 import Navbar from '../components/Navbar.jsx'
 import React, { useRef, useState } from 'react'
 
 // Constants
-import { socialMedias, aboutMe, aboutMeParts, jobDescription1, jobDescription2, gridSizes, jobs, contentNav, projects } from '../data/constants.jsx';
+import { socialMedias, aboutMe, aboutMeParts, jobDescription1, jobDescription2, gridSizes, jobs, contentNav, projects, github, email, linkedIn } from '../data/constants.jsx';
 
 // Assets
 import profileImage from '../assets/pf_image.png'
@@ -190,7 +190,14 @@ const Home = () => {
                                 <Grid container sx={{ justifyContent: 'flex-start', mt: 1, mb: 2, alignContent: 'flex-start', p: 1}} size={{xs: 12}} gap={2}>
                                     {socialMedias.map((value, index) => (
                                         <Grid key={index} size={{xs:'auto'}} sx={{height: 'fit-content'}}>
-                                            <Box>
+                                            <Box
+                                                component='a'
+                                                href={value.link}
+                                                sx={{
+                                                    textDecoration: 'none',
+                                                    color: 'inherit'
+                                                }}
+                                            >
                                                 <Grid container spacing={2} sx={{ alignItems: 'center'}}>
                                                     <img
                                                         src={icons[index]}
@@ -433,21 +440,23 @@ const Home = () => {
                                         >  
                                             <Grid container size={{xs:12, md: 12}} sx={{alignItems: 'flex-start'}} spacing={1}> 
                                                 <Grid size={{xs:6}} sx={{textAlign: 'left'}}>
-                                                    <Typography>
+                                                    <Typography color={'rgb(255 255 255 / 51%)'}>
                                                         Stars: {value.stars}
                                                     </Typography>
                                                 </Grid>
-                                                <Grid size={{xs: 6}}>
-                                                    <Typography>
+                                                <Grid size={{xs: 6}} sx={{textAlign: 'right'}}>
+                                                    <Typography color={'rgb(255 255 255 / 51%)'}>
                                                         {value.primaryLanguage}
                                                     </Typography>
                                                 </Grid>
                                                 <Grid size={{xs:12}} sx={{textAlign: 'left'}}>
-                                                    <Typography>
+                                                    <Typography
+                                                        variant='h4'
+                                                    >
                                                         {value.title}
                                                     </Typography>
                                                 </Grid>
-                                                <Grid size={{xs:12}}>
+                                                <Grid size={{xs:12}} sx={{textAlign: 'left'}}>
                                                     <Typography>
                                                         {value.desc}
                                                     </Typography>
@@ -468,6 +477,43 @@ const Home = () => {
                             </Grid>
 
                             {/*Footer section*/}
+                            <Grid container 
+                                gap={2} 
+                                size={{xs: 7, lg: gridSizes.workExp}}
+                                sx={{ 
+                                    p: 2, 
+                                    justifyContent: 'center' 
+                                }}
+                                ref={(el) => (sectionRef.current['experience'] = el)}
+                            > 
+                                <Box 
+                                    sx={{
+                                        '&:hover': {
+                                            bgcolor: '#3e4247' 
+                                        },
+                                        p: 1,
+                                        border: '2px solid #2F3439',
+                                        borderRadius: 2,
+                                        transition: 'background-color 0.05s ease 0.05s'
+                                    }}
+                                > 
+                                    <Grid container>
+                                        <Grid item xs={12}> 
+                                            <Typography variant="body2">
+                                                &copy; {new Date().getFullYear()} Angel Samora. All rights reserved. {' '}
+                                                <Link 
+                                                    href="https://github.com/Peggy-works/Peggyworks-page" 
+                                                    underline="hover" 
+                                                    color="inherit"
+                                                    sx={{ fontWeight: 'bold' }}
+                                                >
+                                                    Source
+                                                </Link>
+                                            </Typography> 
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                            </Grid>
                         </Grid>
                     </Box>
                 </Grid>
