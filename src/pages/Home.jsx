@@ -1,7 +1,7 @@
-import { Box, Container, Typography, Button, Card, Divider, Collapse, Avatar, Badge, Stack, Chip, Link } from '@mui/material'
+import { Box, Container, Typography, Button, Card, Divider, Collapse, Avatar, Badge, Stack, Chip, Link, ButtonBase } from '@mui/material'
 import Grid from '@mui/material/Grid2';
 import Navbar from '../components/Navbar.jsx'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 // Constants
 import { socialMedias, aboutMe, aboutMeParts, jobDescription1, jobDescription2, gridSizes, jobs, contentNav, projects, github, email, linkedIn } from '../data/constants.jsx';
@@ -20,9 +20,9 @@ const Home = () => {
     const [expandWorkExp, setToggleWorkExp] = useState(false)
     const [expandProjects, setToggleProjects] = useState(false)
     const [expandAboutMe, setToggleAboutMe] = useState(false)
+    const [activeSection, setActiveSection] = useState(false);
     const icons = [linkedinIcon, githubIcon, emailIcon] 
     const parts = aboutMeParts(profileImage)
-    
     
     const scrollToSection = (id) => { 
         const section = sectionRef.current[id]
@@ -37,9 +37,42 @@ const Home = () => {
         }
     }
 
+    const handleSectionClick = (id) => {
+        setActiveSection(id);
+        console.log(activeSection)
+        scrollToSection(id);
+    }
+
     const handleExpand = (e) => {
         expandAboutMe ? setToggleAboutMe(false) : setToggleAboutMe(true)
     }
+
+    useEffect(() => { 
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting){
+                        console.log(`Testing in intersection observer: ${entry.target.id}`)
+                        setActiveSection(entry.target.id);
+                    }
+                })
+            },
+            {
+                root: containerRef.current,  // your scrollable container
+                rootMargin: "-32px 0px -70% 0px", // tweak so "active" happens when section is near top
+                threshold: 0.1, // percentage visible before trigger
+            }
+        )
+
+        // Observe all sections
+        Object.values(sectionRef.current).forEach((section) => {
+            if (section) observer.observe(section);
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [])
 
     return (
         <Box
@@ -143,70 +176,109 @@ const Home = () => {
                                         p: 1
                                     }}
                                 >
-                                    {contentNav.map((value, index) => (
-                                        <Grid 
-                                            container 
-                                            sx={{ 
-                                                alignItems: 'center', 
-                                                height: 'fit-content', 
-                                                py: '6px',
-                                                '& .MuiDivider-root': {
-                                                    transition: 'width 0.13s ease-in-out'
-                                                },
-                                                '&:hover .MuiDivider-root': { 
-                                                    width: '90px',
-                                                    bgcolor: '#ffffff85'
-                                                },
-                                                '&:hover .MuiTypography-root': {
-                                                    color: '#ffffff85'
-                                                }
-                                            }} 
-                                            size={{xs:12}} 
-                                            gap={2}
-                                            onClick={() => scrollToSection(value.name)}
+                                    {contentNav.map((value, index) => {
+                                    const isActive = activeSection === value.name;
+
+                                    return (
+                                        <Grid
+                                        container
+                                        key={value.name}
+                                        sx={{
+                                            alignItems: 'center',
+                                            py: '6px',
+                                            cursor: 'pointer',
+                                            '& .MuiDivider-root': {
+                                            transition: 'width 0.13s ease-in-out',
+                                            width: isActive ? '90px' : '45px',
+                                            bgcolor: isActive ? '#ffffff85' : 'white',
+                                            },
+
+                                            // Base styles for text
+                                            '& .MuiTypography-root': {
+                                            color: isActive ? '#ffffff85' : 'white',
+                                            },
+
+                                            // Hover effects (only when not active)
+                                            '&:hover .MuiDivider-root': {
+                                            width: isActive ? '90px' : '90px',   // stays wide if active
+                                            bgcolor: isActive ? '#ffffff85' : '#ffffff85',
+                                            },
+                                            '&:hover .MuiTypography-root': {
+                                            color: isActive ? '#ffffff85' : '#ffffff85',
+                                            },
+                                        }}
+                                        size={{ xs: 12 }}
+                                        gap={2}
+                                        onClick={() => handleSectionClick(value.name)}
                                         >
-                                            <Box 
-                                                sx={{ 
-                                                    width: 'fit-content'
-                                                }} 
-                                            >
-                                                <Grid container sx={{alignItems: 'center'}} gap={2} size={{xs:12}} >
-                                                    <Grid size={{xs: 'auto'}}>
-                                                        <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{'0' + (index + 1)}</Typography>
-                                                    </Grid>
-                                                    <Grid sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}} size={{xs: 'auto'}}>
-                                                        <Divider sx={{ height: '1.5px', backgroundColor: 'white', width: '45px'}}></Divider>
-                                                    </Grid>
-                                                    <Grid size={{xs: 'auto'}} >
-                                                        <Typography variant='h6' sx={{fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value.sectionName}</Typography>
-                                                    </Grid>
+                                            <Box sx={{ width: 'fit-content' }}>
+                                                <Grid container sx={{ alignItems: 'center' }} gap={2} size={{ xs: 12 }}>
+                                                <Grid size={{ xs: 'auto' }}>
+                                                    <Typography variant="h6">{'0' + (index + 1)}</Typography>
+                                                </Grid>
+                                                <Grid size={{ xs: 'auto' }}>
+                                                    <Divider sx={{ height: '1.5px' }} />
+                                                </Grid>
+                                                <Grid size={{ xs: 'auto' }}>
+                                                    <Typography variant="h6">{value.sectionName}</Typography>
+                                                </Grid>
                                                 </Grid>
                                             </Box>
                                         </Grid>
-                                    ))}
+                                    );
+                                    })}
                                 </Grid>
 
                                 {/* Social Media links container */}
                                 <Grid container sx={{ justifyContent: 'flex-start', mt: 1, mb: 2, alignContent: 'flex-start', p: 1}} size={{xs: 12}} gap={2}>
                                     {socialMedias.map((value, index) => (
-                                        <Grid key={index} size={{xs:'auto'}} sx={{height: 'fit-content'}}>
-                                            <Box
-                                                component='a'
-                                                href={value.link}
-                                                sx={{
-                                                    textDecoration: 'none',
-                                                    color: 'inherit'
-                                                }}
-                                            >
-                                                <Grid container spacing={2} sx={{ alignItems: 'center'}}>
-                                                    <img
-                                                        src={icons[index]}
-                                                        style={{}}
-                                                    /> 
-                                                    <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value.name}</Typography>
-                                                </Grid>
-                                            </Box> 
-                                        </Grid>
+                                        // <Grid key={index} size={{xs:'auto'}} sx={{height: 'fit-content'}}>
+                                        //     <Box
+                                        //         component='a'
+                                        //         href={value.link}
+                                        //         sx={{
+                                        //             textDecoration: 'none',
+                                        //             color: 'inherit'
+                                        //         }}
+                                        //     >
+                                        //         <Grid container spacing={2} sx={{ alignItems: 'center'}}>
+                                        //             <img
+                                        //                 src={icons[index]}
+                                        //                 style={{}}
+                                        //             /> 
+                                        //             <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value.name}</Typography>
+                                        //         </Grid>
+                                        //     </Box> 
+                                        // </Grid>
+                                        <ButtonBase
+                                            key={index}
+                                            component="a"
+                                            href={value.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            sx={{
+                                                display: "flex",
+                                                alignItems: "center",
+                                                gap: 1.5,
+                                                px: 2,
+                                                py: 1,
+                                                borderRadius: 2,
+                                                textDecoration: "none",
+                                                color: "inherit",
+                                                transition: "background-color 0.2s ease",
+                                                "&:hover": {
+                                                backgroundColor: "rgba(255,255,255,0.1)",
+                                                },
+                                            }}
+                                        >
+                                            <Grid container spacing={2} sx={{ alignItems: 'center'}}>
+                                                <img
+                                                    src={icons[index]}
+                                                    style={{}}
+                                                /> 
+                                                <Typography variant='h6' sx={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'}}>{value.name}</Typography>
+                                            </Grid>
+                                        </ButtonBase> 
                                     ))}
                                 </Grid>
                             </Grid>
