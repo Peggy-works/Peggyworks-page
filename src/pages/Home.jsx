@@ -495,7 +495,7 @@ const Home = () => {
                                     p: 2, 
                                     justifyContent: 'center' 
                                 }} 
-                                ref={(el) => (sectionRef.current['education'] = el)}
+                                ref={(el) => (sectionRef.current['projects'] = el)}
                             >  
                                 {  
                                     projects.map((value, index) => (
@@ -556,7 +556,7 @@ const Home = () => {
                                     p: 2, 
                                     justifyContent: 'center' 
                                 }}
-                                ref={(el) => (sectionRef.current['experience'] = el)}
+                                ref={(el) => (sectionRef.current['links'] = el)}
                             > 
                                 <Box 
                                     sx={{
